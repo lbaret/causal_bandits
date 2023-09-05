@@ -18,11 +18,11 @@ def regret_vs_T(model,algorithms,T_vals,simulations = 10):
     for T_indx,T in enumerate(T_vals): 
         
         for a_indx,algorithm in enumerate(algorithms):
-            for s in xrange(simulations):
+            for s in range(simulations):
                 regret[a_indx,T_indx,s] = algorithm.run(T,model)
                 if algorithm.best_action is not None:
                     pulls[a_indx,T_indx,algorithm.best_action] +=1
-        print T
+        print(T)
                 
     return regret,pulls
            

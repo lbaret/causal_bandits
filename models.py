@@ -22,7 +22,7 @@ from itertools import product,chain
 from numpy.random import binomial
 from scipy.optimize import minimize
 from scipy.stats import binom
-from scipy.misc import comb
+from scipy.special import comb
 
 
 np.set_printoptions(precision=6,suppress=True,linewidth=200)
@@ -707,7 +707,7 @@ def estimate_px_and_y_from_samples(model,samples):
         shape = list(chain([model.K],[2]*model.N))
         xcounts = np.zeros(shape)
         for a in range(model.K):
-            for s in xrange(samples):
+            for s in range(samples):
                 x,y = model.sample(a)
                 pos = tuple(chain([a],x))
                 
@@ -754,7 +754,7 @@ if __name__ == "__main__":
     
 #    start = time.time()
 #      
-#    for i in xrange(100):
+#    for i in range(100):
 #        eta = np.random.random(7)
 #        eta = eta/eta.sum()
 #        model2.V_short(eta)

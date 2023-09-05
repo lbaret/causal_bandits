@@ -22,11 +22,11 @@ def regret_vs_m_general(algorithms,N1_vals,N,T,pz,pY,q,epsilon,simulations = 100
         eta = [0,0,1.0/(N1+2.0),0,0,0,1-N1/(N1+2.0)]
         model.compute_m(eta_short = eta)
        
-        print N1,model.m
+        print(N1,model.m)
         m_vals.append(model.m)
         models.append(model)
         for a_indx, algorithm in enumerate(algorithms):
-            for s in xrange(simulations):
+            for s in range(simulations):
                 regret[a_indx,m_indx,s] = algorithm.run(T,model)
                 
     

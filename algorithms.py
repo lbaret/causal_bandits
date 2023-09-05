@@ -34,7 +34,7 @@ class GeneralCausal(object):
         
         actions = range(n)
         u = np.zeros(n)
-        for t in xrange(T):
+        for t in range(T):
             a = np.random.choice(actions,p=eta)
             x,y = model.sample(a) #x is an array containing values for each variable
             #y = y - model.get_costs()[a]
@@ -63,7 +63,7 @@ class ParallelCausal(object):
         self.trials = np.zeros(model.K)
         self.success = np.zeros(model.K)
         h = T/2
-        for t in range(h):
+        for t in range(int(h)):
             x,y = model.sample(model.K-1) # do nothing
             xij = np.hstack((1-x,x,1)) # first N actions represent x_i = 0,2nd N x_i=1, last do()
             self.trials += xij
@@ -95,7 +95,7 @@ class ThompsonSampling(object):
         self.trials = np.full(model.K,2,dtype=int)
         self.success = np.full(model.K,1,dtype=int)
         
-        for t in xrange(T):
+        for t in range(T):
             fails = self.trials - self.success
             theta = np.random.beta(self.success,fails)
             arm = argmax_rand(theta)
@@ -199,7 +199,7 @@ class ObservationalEstimate(object):
     def run(self,T,model):
         self.trials = np.zeros(model.K)
         self.success = np.zeros(model.K)
-        for t in xrange(T):
+        for t in range(T):
             x,y = model.sample(model.K-1)
             xij = np.hstack((1-x,x,1)) # first N actions represent x_i = 0,2nd N x_i=1, last do()
             self.trials += xij

@@ -13,10 +13,10 @@ import matplotlib
 matplotlib.rcParams['pdf.fonttype'] = 42
 matplotlib.rcParams['ps.fonttype'] = 42
 from algorithms import GeneralCausal,  ParallelCausal, SuccessiveRejects,AlphaUCB,RandomArm,ThompsonSampling
-import cPickle as pickle
+import pickle
 import os
 
-print "LOADING EXPERIMENT CONFIG MODULE AGAIN"
+print("LOADING EXPERIMENT CONFIG MODULE AGAIN")
 
 def now_string():
     return dt.datetime.now().strftime('%Y%m%d_%H%M')

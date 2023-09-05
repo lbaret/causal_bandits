@@ -16,8 +16,8 @@ def regret_vs_m(algorithms,m_vals,N,T,epsilon,simulations = 10):
     for m_indx,m in enumerate(m_vals):
         model = Parallel.create(N,m,epsilon)
         models.append(model)
-        print "built model {0}".format(m)
-        for s in xrange(simulations):
+        print("built model {0}".format(m))
+        for s in range(simulations):
             for a_indx,algorithm in enumerate(algorithms):
                 regret[a_indx,m_indx,s] = algorithm.run(T,model)
     
@@ -28,7 +28,7 @@ experiment.log_code()
           
 N = 50
 epsilon = .3
-simulations = 10000
+simulations = 100
 T = 400
 algorithms = [GeneralCausal(truncate='None'),ParallelCausal(),SuccessiveRejects(),AlphaUCB(2),ThompsonSampling()]
 m_vals = range(2,N,2)

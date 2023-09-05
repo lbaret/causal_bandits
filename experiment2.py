@@ -16,10 +16,10 @@ def regret_vs_T_vary_epsilon(model,algorithms,T_vals,simulations = 10):
     regret = np.zeros((len(algorithms),len(T_vals),simulations))
     
     for T_indx,T in enumerate(T_vals): 
-        print T
+        print(T)
         epsilon = sqrt(model.K/(a*T))
         model.set_epsilon(epsilon)
-        for s in xrange(simulations):
+        for s in range(simulations):
             for a_indx, algorithm in enumerate(algorithms):
                 regret[a_indx,T_indx,s] = algorithm.run(T,model)
         
