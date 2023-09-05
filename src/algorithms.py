@@ -7,7 +7,7 @@ Created on Tue Sep 13 11:15:43 2016
 
 import numpy as np
 from math import sqrt, log
-from models import Parallel
+from src.models import Parallel
 
 
 def argmax_rand(x):

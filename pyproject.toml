@@ -2,9 +2,12 @@
 name = "causal-bandits"
 version = "0.1.0"
 description = "Test Causal Bandits algorithms from litterature"
-authors = ["Loïc <baret.loic.1@gmail.com>"]
+authors = ["finnhacks42", "Loïc <baret.loic.1@gmail.com>"]
 readme = "README.md"
-packages = [{include = "causal_bandits"}]
+packages = [
+    {include = "causal_bandits"},
+    {include = "src", from = "causal_bandits"}
+]
 
 [tool.poetry.dependencies]
 python = ">=3.10,<3.11"
