@@ -6,9 +6,9 @@ Created on Wed Sep 21 11:30:34 2016
 """
 import numpy as np
 from math import sqrt,ceil
-from models import Parallel
-from algorithms import GeneralCausal, ParallelCausal, SuccessiveRejects, AlphaUCB, ThompsonSampling
-from experiment_config import now_string, Experiment
+from src.models import Parallel
+from src.algorithms import GeneralCausal, ParallelCausal, SuccessiveRejects, AlphaUCB, ThompsonSampling
+from experiments.experiment_config import now_string, Experiment
 
 
 def regret_vs_T_vary_epsilon(model,algorithms,T_vals,simulations = 10):

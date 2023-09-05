@@ -8,9 +8,9 @@ If the resulting bias exceeds epsilon then the Parallel algorithm will never ide
 """
 
 
-from models import ParallelConfoundedNoZAction
-from algorithms import SuccessiveRejects,GeneralCausal,ParallelCausal,AlphaUCB,ThompsonSampling
-from experiment_config import Experiment
+from src.models import ParallelConfoundedNoZAction
+from src.algorithms import SuccessiveRejects,GeneralCausal,ParallelCausal,AlphaUCB,ThompsonSampling
+from experiments.experiment_config import Experiment
 import numpy as np
 from itertools import chain
 

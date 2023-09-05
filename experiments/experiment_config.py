@@ -12,7 +12,7 @@ import matplotlib.pyplot as plt
 import matplotlib
 matplotlib.rcParams['pdf.fonttype'] = 42
 matplotlib.rcParams['ps.fonttype'] = 42
-from algorithms import GeneralCausal,  ParallelCausal, SuccessiveRejects,AlphaUCB,RandomArm,ThompsonSampling
+from src.algorithms import GeneralCausal,  ParallelCausal, SuccessiveRejects,AlphaUCB,RandomArm,ThompsonSampling
 import pickle
 import os
 

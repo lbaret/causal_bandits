@@ -5,9 +5,9 @@ Created on Wed Sep 21 11:52:59 2016
 @author: finn
 """
 import numpy as np
-from algorithms import GeneralCausal,ParallelCausal,SuccessiveRejects, AlphaUCB,ThompsonSampling
-from models import Parallel
-from experiment_config import Experiment, now_string
+from src.algorithms import GeneralCausal,ParallelCausal,SuccessiveRejects, AlphaUCB,ThompsonSampling
+from src.models import Parallel
+from experiments.experiment_config import Experiment, now_string
 
 def regret_vs_T(model,algorithms,T_vals,simulations = 10):
     

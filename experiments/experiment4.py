@@ -6,9 +6,9 @@ Created on Tue Sep 20 16:48:05 2016
 
 
 """
-from models import ParallelConfounded,ScaleableParallelConfounded
-from algorithms import SuccessiveRejects,GeneralCausal,AlphaUCB,ThompsonSampling,ParallelCausal
-from experiment_config import Experiment
+from src.models import ParallelConfounded,ScaleableParallelConfounded
+from src.algorithms import SuccessiveRejects,GeneralCausal,AlphaUCB,ThompsonSampling,ParallelCausal
+from experiments.experiment_config import Experiment
 import numpy as np
 
 
