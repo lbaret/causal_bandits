@@ -10,7 +10,7 @@ If the resulting bias exceeds epsilon then the Parallel algorithm will never ide
 
 from src.models import ParallelConfoundedNoZAction
 from src.algorithms import SuccessiveRejects,GeneralCausal,ParallelCausal,AlphaUCB,ThompsonSampling
-from experiments.experiment_config import Experiment
+from experiments.experiment_config import ExperimentConfig
 import numpy as np
 from itertools import chain
 
@@ -31,7 +31,7 @@ def regret_vs_T(model,algorithms,T_vals,simulations = 10):
     return regret,pulls
 
 
-experiment = Experiment(5)
+experiment = ExperimentConfig(5)
 experiment.log_code()
            
 simulations = 10000                 

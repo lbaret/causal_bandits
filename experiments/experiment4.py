@@ -8,7 +8,7 @@ Created on Tue Sep 20 16:48:05 2016
 """
 from src.models import ParallelConfounded,ScaleableParallelConfounded
 from src.algorithms import SuccessiveRejects,GeneralCausal,AlphaUCB,ThompsonSampling,ParallelCausal
-from experiments.experiment_config import Experiment
+from experiments.experiment_config import ExperimentConfig
 import numpy as np
 
 
@@ -33,7 +33,7 @@ def regret_vs_m_general(algorithms,N1_vals,N,T,pz,pY,q,epsilon,simulations = 100
     return m_vals,regret,models
     
    
-experiment = Experiment(4)
+experiment = ExperimentConfig(4)
 experiment.log_code()
     
 N = 50

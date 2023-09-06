@@ -1,0 +1,2 @@
+class RegretVsM(object):
+    pass

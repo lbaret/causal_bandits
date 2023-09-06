@@ -7,7 +7,7 @@ Created on Mon Oct  3 08:19:07 2016
 
 from src.models import ScaleableParallelConfounded,ParallelConfounded
 from src.algorithms import SuccessiveRejects,GeneralCausal,AlphaUCB,ThompsonSampling
-from experiments.experiment_config import Experiment
+from experiments.experiment_config import ExperimentConfig
 import numpy as np
 
 
@@ -27,7 +27,7 @@ def regret_vs_T(model,algorithms,T_vals,simulations = 10):
     return regret,pulls
            
 
-experiment = Experiment(6)
+experiment = ExperimentConfig(6)
 experiment.log_code()
                 
 N = 50

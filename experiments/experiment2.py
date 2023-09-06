@@ -8,7 +8,7 @@ import numpy as np
 from math import sqrt,ceil
 from src.models import Parallel
 from src.algorithms import GeneralCausal, ParallelCausal, SuccessiveRejects, AlphaUCB, ThompsonSampling
-from experiments.experiment_config import now_string, Experiment
+from experiments.experiment_config import now_string, ExperimentConfig
 
 
 def regret_vs_T_vary_epsilon(model,algorithms,T_vals,simulations = 10):
@@ -25,7 +25,7 @@ def regret_vs_T_vary_epsilon(model,algorithms,T_vals,simulations = 10):
         
     return regret
     
-experiment = Experiment(2)
+experiment = ExperimentConfig(2)
 experiment.log_code()
 
 N= 50

@@ -7,7 +7,7 @@ Created on Wed Sep 21 11:52:59 2016
 import numpy as np
 from src.algorithms import GeneralCausal,ParallelCausal,SuccessiveRejects, AlphaUCB,ThompsonSampling
 from src.models import Parallel
-from experiments.experiment_config import Experiment, now_string
+from experiments.experiment_config import ExperimentConfig, now_string
 
 def regret_vs_T(model,algorithms,T_vals,simulations = 10):
     
@@ -21,7 +21,7 @@ def regret_vs_T(model,algorithms,T_vals,simulations = 10):
                 
     return regret
            
-experiment = Experiment(3)
+experiment = ExperimentConfig(3)
 experiment.log_code()
                   
 simulations = 10000
