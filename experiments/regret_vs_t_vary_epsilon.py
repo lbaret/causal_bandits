@@ -20,12 +20,11 @@ class RegretVsTVaryEpsilon(SingleExperiment):
         
         self.initialize_missing_attributes(
             model=model,
-            T_vals=T_vals
+            T_vals=T_vals,
+            regret=np.zeros((len(self.algorithms), len(self.T_vals), self.simulations))
         )
 
-    def run(self) -> None:
-        regret = np.zeros((len(self.algorithms), len(self.T_vals), self.simulations))
-        
+    def run(self) -> None:        
         for T_indx, T in enumerate(self.T_vals):
             if self.verbose: 
                 print(T)
@@ -35,6 +34,4 @@ class RegretVsTVaryEpsilon(SingleExperiment):
             
             for s in range(self.simulations):
                 for a_indx, algorithm in enumerate(self.algorithms):
-                    regret[a_indx, T_indx, s] = algorithm.run(T, self.model)
-            
-        return regret
+                    self.regret[a_indx, T_indx, s] = algorithm.run(T, self.model)

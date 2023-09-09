@@ -15,18 +15,16 @@ class RegretVsT(SingleExperiment):
 
         self.initialize_missing_attributes(
             model=model,
-            T_vals=T_vals
+            T_vals=T_vals,
+            regret=np.zeros((len(self.algorithms), len(self.T_vals), self.simulations)),
+            pulls=np.zeros((len(self.algorithms), len(self.T_vals), self.model.K), dtype=int)
         )
 
     def run(self) -> None:
-        regret = np.zeros((len(self.algorithms), len(self.T_vals), self.simulations))
-        pulls = np.zeros((len(self.algorithms), len(self.T_vals), self.model.K), dtype=int)
         for T_indx, T in enumerate(self.T_vals): 
             for a_indx, algorithm in enumerate(self.algorithms):
                 for s in range(self.simulations):
-                    regret[a_indx, T_indx, s] = algorithm.run(T, self.model)
+                    self.regret[a_indx, T_indx, s] = algorithm.run(T, self.model)
                     if algorithm.best_action is not None:
-                        pulls[a_indx, T_indx, algorithm.best_action] += 1
+                        self.pulls[a_indx, T_indx, algorithm.best_action] += 1
             print(T)
-                    
-        return regret, pulls
