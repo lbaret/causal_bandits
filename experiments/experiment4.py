@@ -10,7 +10,7 @@ from typing import Iterable, Tuple
 
 import numpy as np
 
-from experiments.experiment_config import ExperimentConfig
+from experiments.config.experiment_factory import ExperimentFactory
 from src.algorithms import (AlphaUCB, GeneralCausal, ParallelCausal,
                             SuccessiveRejects, ThompsonSampling)
 from src.models import ParallelConfounded, ScaleableParallelConfounded
@@ -44,21 +44,14 @@ def regret_vs_m_general(algorithms, N1_vals: Iterable, N: int, T: int, pz: float
 
     return m_vals, regret, models
     
-def run_experiment_4(verbose: bool=False) -> None:
-    experiment = ExperimentConfig(4)
+def run_experiment_4(N: int, pz: float, q: Tuple[float, float, float, float], epsilon: float, 
+                     T: int, simulations: int, verbose: bool=False) -> None:
+    experiment = ExperimentFactory(4)
     experiment.log_code()
-        
-    N = 50
+
     N1_vals = range(1, N, 3)
-    pz = .4
-    q = (0.00001, 0.00001, .4, .65)
-    epsilon = .3
-    simulations = 10000
-    T = 400
     algorithms = [SuccessiveRejects(), GeneralCausal(), AlphaUCB(2), ThompsonSampling()]
 
-
-    epsilon = .3
     pY = ParallelConfounded.pY_epsilon_best(q, pz, epsilon)
 
     m_vals, regret, models = regret_vs_m_general(algorithms, N1_vals, N, T, pz, pY, q, epsilon, simulations, verbose)

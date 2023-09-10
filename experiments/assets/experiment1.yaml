@@ -1,0 +1,4 @@
+N: 50
+epsilon: 0.3
+simulations: 100
+T: 400

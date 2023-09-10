@@ -23,7 +23,7 @@ def now_string():
 
 # TODO : Run debug and check each parameters types
   
-class ExperimentConfig(object):   
+class ExperimentFactory(object):
     def __init__(self, experiment_id: int):
         self.started = now_string()
         self.experiment_id = experiment_id

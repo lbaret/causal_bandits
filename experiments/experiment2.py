@@ -9,7 +9,7 @@ from typing import Iterable
 
 import numpy as np
 
-from experiments.experiment_config import ExperimentConfig, now_string
+from experiments.config.experiment_factory import ExperimentFactory, now_string
 from src.algorithms import (AlphaUCB, GeneralCausal, ParallelCausal,
                             SuccessiveRejects, ThompsonSampling)
 from src.models import Parallel
@@ -37,18 +37,14 @@ def regret_vs_T_vary_epsilon(model, algorithms, T_vals: Iterable, a: float, simu
 
     return regret
 
-def run_experiment_2(verbose: bool=False) -> None:
-    experiment = ExperimentConfig(2)
+def run_experiment_2(N: int, simulations: int, a: float, m: int, verbose: bool=False) -> None:
+    experiment = ExperimentFactory(2)
     experiment.log_code()
-
-    N= 50
-    simulations = 10000
-    a = 9.0
-    m = 2
+    
     model = Parallel.create(N, m, .1)
 
-    Tmin = int(ceil(4*model.K / a))
-    Tmax = 10*model.K
+    Tmin = int(ceil(4 * model.K / a))
+    Tmax = 10 * model.K
     T_vals = range(Tmin, Tmax, 100)
 
     algorithms = [GeneralCausal(truncate='None'), ParallelCausal(), SuccessiveRejects(), AlphaUCB(2), ThompsonSampling()]

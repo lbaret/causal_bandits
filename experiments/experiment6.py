@@ -5,11 +5,11 @@ Created on Mon Oct  3 08:19:07 2016
 @author: finn
 """
 
-from typing import Iterable
+from typing import Iterable, Tuple
 
 import numpy as np
 
-from experiments.experiment_config import ExperimentConfig
+from experiments.config.experiment_factory import ExperimentFactory
 from src.algorithms import (AlphaUCB, GeneralCausal, SuccessiveRejects,
                             ThompsonSampling)
 from src.models import ParallelConfounded, ScaleableParallelConfounded
@@ -39,18 +39,12 @@ def regret_vs_T(model, algorithms, T_vals: Iterable,simulations: int=10, verbose
     return regret,pulls
            
 
-def run_experiment_6(verbose: bool=False) -> None:
-    experiment = ExperimentConfig(6)
+def run_experiment_6(N: int, N1: int, pz: float, q: Tuple[float, float, float, float], 
+                     epsilon: float, simulations: int, verbose: bool=False) -> None:
+    experiment = ExperimentFactory(6)
     experiment.log_code()
-                    
-    N = 50
-    N1 = 1
-    pz = .4
-    q = (0.00001, 0.00001, .4, .65)
-    epsilon = .3
 
     pY = ParallelConfounded.pY_epsilon_best(q, pz, epsilon)
-    simulations = 10000
 
     model = ScaleableParallelConfounded(q, pz, pY, N1, N - N1)
     T_vals = range(25, 626, 25)

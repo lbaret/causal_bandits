@@ -7,7 +7,7 @@ Created on Wed Sep 21 11:52:59 2016
 from typing import Iterable
 import numpy as np
 
-from experiments.experiment_config import ExperimentConfig, now_string
+from experiments.config.experiment_factory import ExperimentFactory, now_string
 from src.algorithms import (AlphaUCB, GeneralCausal, ParallelCausal,
                             SuccessiveRejects, ThompsonSampling)
 from src.models import Parallel
@@ -30,14 +30,10 @@ def regret_vs_T(model, algorithms, T_vals: Iterable, simulations: int=10, verbos
                 
     return regret
 
-def run_experiment_3(verbose: bool=False) -> None:
-    experiment = ExperimentConfig(3)
+def run_experiment_3(N: int, m: int, epsilon: float, simulations: int, verbose: bool=False) -> None:
+    experiment = ExperimentFactory(3)
     experiment.log_code()
-                    
-    simulations = 10000
-    N = 50
-    m = 2
-    epsilon = .3
+
     model = Parallel.create(N, m, epsilon)
     T_vals = range(10, 6 * model.K, 25)
     algorithms = [GeneralCausal(truncate='None'), ParallelCausal(), SuccessiveRejects(), AlphaUCB(2), ThompsonSampling()]

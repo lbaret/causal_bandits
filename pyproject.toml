@@ -5,9 +5,12 @@ description = "Test Causal Bandits algorithms from litterature"
 authors = ["finnhacks42", "Loïc <baret.loic.1@gmail.com>"]
 readme = "README.md"
 packages = [
-    {include = "causal_bandits"},
-    {include = "src", from = "causal_bandits"}
+    {include = "src"},
+    {include = "experiments"}
 ]
+
+[tool.poetry.scripts]
+run_experiment = 'experiments.run:run_experiment'
 
 [tool.poetry.dependencies]
 python = ">=3.10,<3.11"
@@ -15,6 +18,7 @@ numpy = "^1.25.2"
 scipy = "^1.11.2"
 matplotlib = "^3.7.2"
 click = "^8.1.7"
+pyyaml = "^6.0.1"
 
 
 [build-system]

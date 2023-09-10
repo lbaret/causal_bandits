@@ -1,0 +1,6 @@
+N: 50
+pz: 0.4
+q: !!python/tuple [0.00001, 0.00001, .4, .65]
+epsilon: 0.3
+T: 400
+simulations: 10000
