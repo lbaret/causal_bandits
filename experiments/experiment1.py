@@ -4,38 +4,55 @@ Created on Tue Sep 20 16:47:47 2016
 
 @author: finn
 """
+from typing import Iterable
 import numpy as np
-from src.models import Parallel
-from src.algorithms import GeneralCausal, ParallelCausal, SuccessiveRejects,AlphaUCB,ThompsonSampling
+
 from experiments.experiment_config import ExperimentConfig
+from src.algorithms import (AlphaUCB, GeneralCausal, ParallelCausal,
+                            SuccessiveRejects, ThompsonSampling)
+from src.models import Parallel
 
 
-def regret_vs_m(algorithms,m_vals,N,T,epsilon,simulations = 10):  
+def regret_vs_m(algorithms, m_vals: Iterable, N: int, T: int, epsilon: float, 
+                simulations: int=10, verbose: bool=False):
     models = []    
-    regret = np.zeros((len(algorithms),len(m_vals),simulations))
-    for m_indx,m in enumerate(m_vals):
-        model = Parallel.create(N,m,epsilon)
+    regret = np.zeros((len(algorithms), len(m_vals), simulations))
+
+    for m_indx, m in enumerate(m_vals):
+        if verbose:
+            print(m)
+        model = Parallel.create(N, m, epsilon)
         models.append(model)
-        print("built model {0}".format(m))
+
+        if verbose:
+            print(f"built model {m}")
+
         for s in range(simulations):
-            for a_indx,algorithm in enumerate(algorithms):
-                regret[a_indx,m_indx,s] = algorithm.run(T,model)
+            if verbose:
+                print(f"\rSimulation : {s} / {simulations}", end='')
+            
+            for a_indx, algorithm in enumerate(algorithms):
+                regret[a_indx, m_indx, s] = algorithm.run(T, model)
+        
+        if verbose:
+            print()
     
-    return regret,models
+    return regret, models
 
-experiment = ExperimentConfig(1)
-experiment.log_code()
-
-N = 50
-epsilon = .3
-simulations = 100
-T = 400
-algorithms = [GeneralCausal(truncate='None'),ParallelCausal(),SuccessiveRejects(),AlphaUCB(2),ThompsonSampling()]
-m_vals = range(2,N,2)
+def run_experiment_1(verbose: bool=False) -> None:
+    experiment = ExperimentConfig(1)
+    experiment.log_code()
     
-regret,models = regret_vs_m(algorithms,m_vals,N,T,epsilon,simulations = simulations)
+    N = 50
+    epsilon = .3
+    simulations = 100
+    T = 400
+    algorithms = [GeneralCausal(truncate='None'), ParallelCausal(), SuccessiveRejects(), AlphaUCB(2), ThompsonSampling()]
+    m_vals = range(2,N,2)
+        
+    regret, _ = regret_vs_m(algorithms, m_vals, N, T, epsilon, simulations, verbose)
 
-experiment.plot_regret(regret,m_vals,"m",algorithms,legend_loc="lower right")
+    experiment.plot_regret(regret, m_vals, "m", algorithms, legend_loc="lower right")
 
 
 

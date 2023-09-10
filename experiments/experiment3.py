@@ -4,39 +4,49 @@ Created on Wed Sep 21 11:52:59 2016
 
 @author: finn
 """
+from typing import Iterable
 import numpy as np
-from src.algorithms import GeneralCausal,ParallelCausal,SuccessiveRejects, AlphaUCB,ThompsonSampling
-from src.models import Parallel
-from experiments.experiment_config import ExperimentConfig, now_string
 
-def regret_vs_T(model,algorithms,T_vals,simulations = 10):
+from experiments.experiment_config import ExperimentConfig, now_string
+from src.algorithms import (AlphaUCB, GeneralCausal, ParallelCausal,
+                            SuccessiveRejects, ThompsonSampling)
+from src.models import Parallel
+
+
+def regret_vs_T(model, algorithms, T_vals: Iterable, simulations: int=10, verbose: bool=False):
+    regret = np.zeros((len(algorithms), len(T_vals), simulations))
     
-    regret = np.zeros((len(algorithms),len(T_vals),simulations))
-    
-    for T_indx,T in enumerate(T_vals): 
-        for a_indx,algorithm in enumerate(algorithms):
+    for T_indx, T in enumerate(T_vals):
+        if verbose:
+            print(T)
+
+        for a_indx, algorithm in enumerate(algorithms):
             for s in range(simulations):
-                regret[a_indx,T_indx,s] = algorithm.run(T,model)
-        print(T)
+                if verbose:
+                    print(f"{s} / {simulations}", end='')
+                regret[a_indx, T_indx, s] = algorithm.run(T, model)
+        if verbose:
+            print()
                 
     return regret
-           
-experiment = ExperimentConfig(3)
-experiment.log_code()
-                  
-simulations = 10000
-N = 50
-m = 2
-epsilon = .3
-model = Parallel.create(N,m,epsilon)
-T_vals = range(10,6*model.K,25)
-algorithms = [GeneralCausal(truncate='None'),ParallelCausal(),SuccessiveRejects(),AlphaUCB(2),ThompsonSampling()]
 
-regret = regret_vs_T(model,algorithms,T_vals,simulations = simulations)
-finished = now_string()
+def run_experiment_3(verbose: bool=False) -> None:
+    experiment = ExperimentConfig(3)
+    experiment.log_code()
+                    
+    simulations = 10000
+    N = 50
+    m = 2
+    epsilon = .3
+    model = Parallel.create(N, m, epsilon)
+    T_vals = range(10, 6 * model.K, 25)
+    algorithms = [GeneralCausal(truncate='None'), ParallelCausal(), SuccessiveRejects(), AlphaUCB(2), ThompsonSampling()]
+
+    regret = regret_vs_T(model, algorithms, T_vals, simulations, verbose)
+    finished = now_string()
 
 
-experiment.plot_regret(regret,T_vals,"T",algorithms,legend_loc = None)
+    experiment.plot_regret(regret, T_vals, "T", algorithms, legend_loc=None)
 
 
 
