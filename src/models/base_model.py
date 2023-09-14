@@ -38,11 +38,11 @@ class BaseModel(object):
 
         self.get_parent_assignments()
  
-        A = np.zeros((len(self.parent_assignments), self.K))
+        A = np.zeros((len(list(self.parent_assignments)), self.K))
         if compute_py:
-            self.PY = np.zeros(len(self.parent_assignments))
+            self.PY = np.zeros(len(list(self.parent_assignments)))
         
-        for indx,x in enumerate(self.parent_assignments):
+        for indx,x in enumerate(list(self.parent_assignments)):
             A[indx,:] = self.P(x)
             if compute_py:
                 self.PY[indx] = self.pYgivenX(x)

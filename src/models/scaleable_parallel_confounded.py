@@ -1,4 +1,9 @@
+from itertools import product
+
 import numpy as np
+from numpy.random import binomial
+from scipy.optimize import minimize
+from scipy.special import comb
 
 from .base_model import BaseModel
 

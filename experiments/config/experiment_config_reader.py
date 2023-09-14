@@ -13,6 +13,6 @@ class ExperimentConfigReader(object):
     @staticmethod
     def read_yaml(config_path: Path) -> ExperimentConfig:
         with open(config_path, mode='r') as f:
-            config = yaml.safe_load(f)
+            config = yaml.full_load(f)
 
         return ExperimentConfig(**config)

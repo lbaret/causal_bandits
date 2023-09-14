@@ -49,7 +49,7 @@ def run_experiment_2(N: int, simulations: int, a: float, m: int, verbose: bool=F
 
     algorithms = [GeneralCausal(truncate='None'), ParallelCausal(), SuccessiveRejects(), AlphaUCB(2), ThompsonSampling()]
 
-    regret = regret_vs_T_vary_epsilon(model, algorithms, T_vals, simulations, verbose)
+    regret = regret_vs_T_vary_epsilon(model, algorithms, T_vals, a, simulations, verbose)
     finished = now_string()
 
     experiment.plot_regret(regret, T_vals, "T", algorithms, legend_loc=None)

@@ -1,3 +1,5 @@
+from itertools import chain
+
 import numpy as np
 from numpy.random import binomial
 from scipy.optimize import minimize
