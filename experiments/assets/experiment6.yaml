@@ -3,4 +3,4 @@ N1: 1
 pz: .4
 q: !!python/tuple [0.00001, 0.00001, .4, .65] # 4 values
 epsilon: .3
-simulations: 10000
+simulations: 10

@@ -39,7 +39,7 @@ def regret_vs_T_vary_epsilon(model, algorithms, T_vals: Iterable, a: float, simu
 
 def run_experiment_2(N: int, simulations: int, a: float, m: int, verbose: bool=False) -> None:
     experiment = ExperimentFactory(2)
-    experiment.log_code()
+    # experiment.log_code()
     
     model = Parallel.create(N, m, .1)
 

@@ -42,7 +42,7 @@ def regret_vs_T(model, algorithms, T_vals: Iterable,simulations: int=10, verbose
 def run_experiment_6(N: int, N1: int, pz: float, q: Tuple[float, float, float, float], 
                      epsilon: float, simulations: int, verbose: bool=False) -> None:
     experiment = ExperimentFactory(6)
-    experiment.log_code()
+    # experiment.log_code()
 
     pY = ParallelConfounded.pY_epsilon_best(q, pz, epsilon)
 

@@ -3,4 +3,4 @@ N1: 1
 N2: 14
 q: !!python/tuple [0.2, 0.8, 0.7, 0.3]
 pz: 0.6
-simulations: 10000
+simulations: 10

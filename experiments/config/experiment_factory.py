@@ -74,7 +74,7 @@ class ExperimentFactory(object):
     def log_code(self):
         out = "results/experiment{0}_{1}_settings.txt".format(self.experiment_id, self.started)
         experiment_file = "experiment{0}.py".format(self.experiment_id)
-        with open(experiment_file,"r") as f, open(out,"w") as o:
+        with open(experiment_file, "r") as f, open(out, "w") as o:
             o.write(f.read())
     
     def log_regret(self, regret, xvals, xlabel, algorithms):

@@ -46,7 +46,7 @@ def regret_vs_T(model, algorithms, T_vals: Iterable, simulations:int = 10, verbo
 def run_experiment_5(N0: int, N1: int, N2: int, q: Tuple[float, float, float, float],
                      pz: float, simulations: int, verbose: bool=False) -> None:
     experiment = ExperimentFactory(5)
-    experiment.log_code()
+    # experiment.log_code()
 
     pY = np.asarray([[0, 1],[1, 0]])
 

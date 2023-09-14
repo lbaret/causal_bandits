@@ -32,7 +32,7 @@ def regret_vs_T(model, algorithms, T_vals: Iterable, simulations: int=10, verbos
 
 def run_experiment_3(N: int, m: int, epsilon: float, simulations: int, verbose: bool=False) -> None:
     experiment = ExperimentFactory(3)
-    experiment.log_code()
+    # experiment.log_code()
 
     model = Parallel.create(N, m, epsilon)
     T_vals = range(10, 6 * model.K, 25)

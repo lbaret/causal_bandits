@@ -1,4 +1,4 @@
 N: 50
 m: 2
 epsilon: .3
-simulations: 10000
+simulations: 10

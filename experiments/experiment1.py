@@ -41,7 +41,7 @@ def regret_vs_m(algorithms, m_vals: Iterable, N: int, T: int, epsilon: float,
 
 def run_experiment_1(N: int, epsilon: float, simulations: int, T: int, verbose: bool=False) -> None:
     experiment = ExperimentFactory(1)
-    experiment.log_code()
+    # experiment.log_code()
     
     algorithms = [GeneralCausal(truncate='None'), ParallelCausal(), SuccessiveRejects(), AlphaUCB(2), ThompsonSampling()]
     m_vals = range(2, N, 2)
